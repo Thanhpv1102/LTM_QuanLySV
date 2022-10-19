@@ -32,7 +32,7 @@ public class ServerDAO {
     }
     
     public boolean addStudent(Student s){
-        String sql = "INSERT INTO tblstudent(id, name, dob, year, address) VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO tblstudent(id, name, dob, year, address, gpa) VALUES(?,?,?,?,?,?)";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, s.getId());
@@ -40,6 +40,7 @@ public class ServerDAO {
             ps.setDate(3, new java.sql.Date(s.getDob().getTime()));
             ps.setInt(4, s.getYear());
             ps.setString(5, s.getAddress());
+            ps.setFloat(6, s.getGPA());
             ps.executeUpdate();
             return true; //thanh cong
         } catch (Exception e) {

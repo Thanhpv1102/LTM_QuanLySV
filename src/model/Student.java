@@ -17,13 +17,15 @@ public class Student implements Serializable{
     private String address;
     private int year;
     private Date dob;
+    private float gpa;
 
-    public Student(int id, String name, String address, int year, Date dob) {
+    public Student(int id, String name, String address, int year, Date dob, float gpa) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.year = year;
         this.dob = dob;
+        this.gpa = gpa;
     }
 
     public Student() {
@@ -67,6 +69,14 @@ public class Student implements Serializable{
 
     public void setDob(Date dob) {
         this.dob = dob;
+    }
+    
+    public float getGPA() {
+        return gpa;
+    }
+
+    public void setGPA(float gpa) {
+        this.gpa = gpa;
     }
     
 }

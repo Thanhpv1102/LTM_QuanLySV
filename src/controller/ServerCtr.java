@@ -61,8 +61,6 @@ public class ServerCtr {
                 new ServerView().showMessage("Failed!");
             }
         } catch (Exception e) {
-                sendResult("failed");
-                new ServerView().showMessage("Failed!");
             e.printStackTrace();
         }
     }

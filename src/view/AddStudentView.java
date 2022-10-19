@@ -49,6 +49,8 @@ public class AddStudentView extends javax.swing.JFrame implements ActionListener
         txtAddress = new javax.swing.JTextField();
         btnAdd = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        txtGPA = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,6 +87,8 @@ public class AddStudentView extends javax.swing.JFrame implements ActionListener
 
         btnReset.setText("Reset");
 
+        jLabel7.setText("GPA");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -95,27 +99,28 @@ public class AddStudentView extends javax.swing.JFrame implements ActionListener
                         .addGap(122, 122, 122)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addComponent(btnAdd)
+                        .addGap(45, 45, 45)
+                        .addComponent(btnReset))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel6))
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
                         .addGap(44, 44, 44)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtID)
                             .addComponent(txtName)
                             .addComponent(txtDOB)
                             .addComponent(txtYear)
-                            .addComponent(txtAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(40, 40, 40)
-                        .addComponent(btnReset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(32, 32, 32)))
-                .addGap(57, 57, 57))
+                            .addComponent(txtAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                            .addComponent(txtGPA))))
+                .addGap(48, 48, 48))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,11 +147,15 @@ public class AddStudentView extends javax.swing.JFrame implements ActionListener
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txtGPA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd)
                     .addComponent(btnReset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(69, 69, 69))
+                .addGap(42, 42, 42))
         );
 
         pack();
@@ -208,8 +217,10 @@ public class AddStudentView extends javax.swing.JFrame implements ActionListener
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtDOB;
+    private javax.swing.JTextField txtGPA;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtYear;
@@ -235,13 +246,14 @@ public class AddStudentView extends javax.swing.JFrame implements ActionListener
         try {
             Student s = new Student();
             if(txtName.getText().length() != 0 && txtID.getText().length() != 0 && txtYear.getText().length() != 0 && 
-                    txtDOB.getText().length() != 0 && txtAddress.getText().length() != 0){
+                    txtDOB.getText().length() != 0 && txtAddress.getText().length() != 0 && txtGPA.getText().length() != 0){
                 s.setId(Integer.parseInt(txtID.getText()));
                 s.setName(txtName.getText());
                 s.setAddress(txtAddress.getText());
                 s.setYear(Integer.parseInt(txtYear.getText()));
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 s.setDob(sdf.parse(txtDOB.getText()));
+                s.setGPA(Float.parseFloat(txtGPA.getText()));
                 ClientCtr ctr = new ClientCtr();
                 ctr.openSocket();
                 ctr.sendStudent(s);
@@ -270,6 +282,7 @@ public class AddStudentView extends javax.swing.JFrame implements ActionListener
         txtDOB.setText("");
         txtYear.setText("");
         txtAddress.setText("");
+        txtGPA.setText("");
         
     }
 }
